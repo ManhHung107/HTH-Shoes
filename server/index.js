@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-
+const authRouter = require('./routes/auth')
 const connectDB = async () => {
     try {
         await mongoose.connect(
-        `mongodb+srv://manhhung107:12345576@hth-sneaker.mhdfv.mongodb.net/HTH-Sneaker?retryWrites=true&w=majority`, 
+        `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@hth-sneaker.mhdfv.mongodb.net/HTH-Sneaker?retryWrites=true&w=majority`, 
         {
          
 			useNewUrlParser: true,
@@ -22,8 +23,9 @@ const connectDB = async () => {
 connectDB()
 
 const app = express()
+app.use(express.json())
 
-app.get('/', (req, res) => res.send ('Hello world'))
+app.use('/api/auth', authRouter)
 
 const PORT = 5000
 
