@@ -1,4 +1,9 @@
 const Dashboard = () => {
-	return <h1>DASHBOARD</h1>
+	return (
+		<a
+		href='http://localhost:63279/'>
+			Đây là shop giày xịn
+		</a>
+		)
 }
 export default Dashboard
